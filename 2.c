@@ -11,7 +11,6 @@ Date: 10th Sep, 2024.
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/resource.h>
 
 void printLimit(char* name, int res) {
@@ -19,7 +18,7 @@ void printLimit(char* name, int res) {
 
     if (getrlimit(res, &limit) != 0) {
         perror("Could not get resource limits");
-        exit(EXIT_FAILURE);
+        return;
     }
 
     printf("%s :\n", name);
