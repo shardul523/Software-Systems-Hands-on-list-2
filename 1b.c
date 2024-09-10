@@ -1,17 +1,17 @@
-// /*
-// ============================================================================
-// Name : 1b.c
+/*
+============================================================================
+Name : 1b.c
 
-// Author : Shardul Sisodiya
+Author : Shardul Sisodiya
 
-// Description :
-// Write a separate program (for each time domain) to set a interval timer in 10sec and
-// 10micro second
-//     b. ITIMER_VIRTUAL
+Description :
+Write a separate program (for each time domain) to set a interval timer in 10sec and
+10micro second
+    b. ITIMER_VIRTUAL
 
-// Date: 9th Sep, 2024.
-// ============================================================================
-// */
+Date: 9th Sep, 2024.
+============================================================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
