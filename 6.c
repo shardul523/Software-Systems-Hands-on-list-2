@@ -15,24 +15,24 @@ Date: 10th Sep, 2024.
 #include <pthread.h>
 
 void* threadExecFunc(void* arg) {
-    int tid = *((int*) arg);
+    int tc = *((int*) arg);
 
-    printf("Executing function for thread %d\n", tid);
+    printf("Executing function for thread %d\n", tc);
 
-    sleep(tid);
+    sleep(tc);
 
-    printf("Completed execution for thread %d\n", tid);
+    printf("Completed execution for thread %d\n", tc);
 
     return NULL;
 }
 
 int main(void) {
     pthread_t threads[3];
-    int thread_ids[3];
+    int thread_nums[3];
 
     for (int i = 0; i < 3; i++) {
-        thread_ids[i] = i + 1;
-        if (pthread_create(&threads[i], NULL, threadExecFunc, &thread_ids[i]) != 0) {
+        thread_nums[i] = i + 1;
+        if (pthread_create(&threads[i], NULL, threadExecFunc, &thread_nums[i]) != 0) {
             perror("There was an error in creating a thread");
             return 1;
         }
