@@ -22,6 +22,8 @@ Date: 10th Sep, 2024.
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
+#include <limits.h>
+#include <sys/resource.h>
 
 void printLimit(char* lim_name, int lim_val) {
     errno = 0;
@@ -37,8 +39,21 @@ void printLimit(char* lim_name, int lim_val) {
 }
 
 int main(void) {
+    struct rlimit lim;
+
     printLimit("Maximum length of the arguments to the exec family of functions : ", _SC_ARG_MAX);
-    printLimit("Maximum number of simultaneous process per user id : ", _SC_CHILD_MAX);
+    printf("Maximum number of simultaneous process per user id\n");
+    if (getrlimit(RLIMIT_NPROC, &lim) == 0) {
+        if (lim.rlim_cur == RLIM_INFINITY)
+            printf("Soft Limit = unlimited");
+        else
+            printf("Soft Limit = %lu\n", lim.rlim_cur);
+
+        if (lim.rlim_max == RLIM_INFINITY)
+            printf("Hard Limit = unlimited\n");
+        else
+            printf("Hard Limit = %lu\n", lim.rlim_max);
+    }
     printLimit("Number of clock ticks (jiffy) per second : ", _SC_CLK_TCK);
     printLimit("Maximum number of open files : ", _SC_OPEN_MAX);
     printLimit("Size of a page : ", _SC_PAGESIZE);
